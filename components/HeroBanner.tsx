@@ -5,6 +5,19 @@ import Link from "next/link";
 export default function HeroBanner() {
   return (
     <section className="relative h-[90vh] min-h-[600px] bg-primary overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200&h=1600&fit=crop"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="https://assets.mixkit.co/videos/preview/mixkit-man-wearing-a-black-t-shirt-and-leather-jacket-40318-large.mp4"
+          type="video/mp4"
+        />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-primary/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)]" />
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
