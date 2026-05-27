@@ -326,7 +326,6 @@ export const categories = [
   { name: "Briefs", image: "", slug: "briefs", description: "Comfortable everyday essentials" },
 ];
 
-export const bestSellers = products.filter((p) => p.isBestSeller);
 export const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
 
 export const sizeGuide = [

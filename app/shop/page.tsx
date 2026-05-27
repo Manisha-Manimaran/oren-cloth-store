@@ -1,13 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
 import FilterSidebar from "@/components/FilterSidebar";
 import { products } from "@/lib/mockData";
 
 const ITEMS_PER_PAGE = 9;
 
-export default function ShopPage() {
+function ShopContent() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("featured");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -20,6 +23,14 @@ export default function ShopPage() {
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter((p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.color.toLowerCase().includes(q)
+      );
+    }
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((p) =>
         selectedCategories.includes(p.category)
@@ -57,7 +68,7 @@ export default function ShopPage() {
     }
 
     return filtered;
-  }, [selectedCategories, selectedSizes, selectedSleeves, selectedColors, priceMax, sortBy]);
+  }, [searchQuery, selectedCategories, selectedSizes, selectedSleeves, selectedColors, priceMax, sortBy]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const paginatedProducts = filteredProducts.slice(
@@ -261,5 +272,13 @@ export default function ShopPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div className="pt-24 pb-16"><div className="container-oren"><p className="text-sm text-gray-text">Loading shop...</p></div></div>}>
+      <ShopContent />
+    </Suspense>
   );
 }

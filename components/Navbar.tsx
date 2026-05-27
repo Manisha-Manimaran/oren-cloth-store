@@ -8,8 +8,6 @@ import SearchBar from "./SearchBar";
 const navLinks = [
   { label: "Men", href: "/shop" },
   { label: "Women", href: "/shop" },
-  { label: "Oversized", href: "/shop?category=oversized-tees" },
-  { label: "Wholesale", href: "/wholesale" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
