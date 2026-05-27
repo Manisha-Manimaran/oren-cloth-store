@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #0a0a0a;
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .container-oren {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .strike {
+    @apply line-through text-gray-text text-sm;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-8 py-3 text-sm font-medium tracking-wider uppercase hover:bg-primary-light transition-colors duration-200 inline-flex items-center justify-center;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-8 py-3 text-sm font-medium tracking-wider uppercase hover:bg-primary hover:text-white transition-colors duration-200 inline-flex items-center justify-center;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl tracking-tight;
+  }
+
+  .input-oren {
+    @apply w-full border border-border-light px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors bg-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
